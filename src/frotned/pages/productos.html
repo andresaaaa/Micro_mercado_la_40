@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micromercado La 40 - Administrar Productos</title>
+    <link rel="stylesheet" href="../../frotned/style/productos.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img src="../../img/logo1.png" width="50%" alt="Logo Micromercado La 40">
+            </div>
+
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item"><i data-lucide="home"></i> Inicio</a>
+                <a href="productos.html" class="nav-item active"><i data-lucide="package"></i> Productos</a>
+                <div class="nav-item dropdown">
+                    <span class="dropdown-title"><i data-lucide="archive"></i> Inventario</span>
+                    <i data-lucide="chevron-down" class="chevron-icon"></i>
+                </div>
+                <a href="#" class="nav-item"><i data-lucide="arrow-left-right"></i> Entradas</a>
+                <a href="#" class="nav-item"><i data-lucide="arrow-up-right"></i> Salidas</a>
+                <a href="#" class="nav-item"><i data-lucide="bar-chart-3"></i> Reportes</a>
+                <a href="#" class="nav-item"><i data-lucide="users"></i> Usuarios</a>
+                <a href="#" class="nav-item"><i data-lucide="settings"></i> Configuración</a>
+            </nav>
+
+            <button class="logout-btn">
+                <i data-lucide="log-out"></i> Cerrar sesión
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="welcome-text">
+                    <h1>Productos</h1>
+                    <p>Administra tus productos registrados.</p>
+                </div>
+                <div class="user-profile">
+                    <div class="notification-icon">
+                        <i data-lucide="bell"></i>
+                        <span class="badge"></span>
+                    </div>
+                    <div class="profile-info">
+                        <div class="avatar"><i data-lucide="user"></i></div>
+                        <span>Administrador</span>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <section class="toolbar">
+                <div class="search-container">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Buscar producto...">
+                </div>
+                <button class="btn btn-add" id="btn-nuevo-producto">
+                    <i data-lucide="plus"></i> Nuevo Producto
+                </button>
+            </section>
+
+            <section class="card table-container">
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr>
+                            <td>P001</td>
+                            <td class="bold">Arroz Diana (1kg)</td>
+                            <td>Abarrotes</td>
+                            <td>25</td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
+                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P002</td>
+                            <td class="bold">Aceite Girasol (900ml)</td>
+                            <td>Abarrotes</td>
+                            <td>18</td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
+                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P003</td>
+                            <td class="bold">Leche Entera (1L)</td>
+                            <td>Lácteos</td>
+                            <td>5</td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
+                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P004</td>
+                            <td class="bold">Azúcar La Muñeca (1kg)</td>
+                            <td>Abarrotes</td>
+                            <td>12</td>
+                            <td><span class="status-badge inactive">Inactivo</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
+                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P005</td>
+                            <td class="bold">Salsa de Tomate (200g)</td>
+                            <td>Enlatados</td>
+                            <td>0</td>
+                            <td><span class="status-badge inactive">Inactivo</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
+                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P006</td>
+                            <td class="bold">Atún Van Camps (160g)</td>
+                            <td>Enlatados</td>
+                            <td>4</td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
+                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="pagination-container">
+                <span class="pagination-info">Mostrando 1 a 6 de 6 productos</span>
+                <div class="pagination-controls">
+                    <button class="page-btn nav-btn" disabled><i data-lucide="chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn nav-btn" disabled><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>&copy; 2025 Micromercado La 40. Todos los derechos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../../backend/productos.js"></script>
+</body>
+</html>
