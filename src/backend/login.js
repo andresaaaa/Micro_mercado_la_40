@@ -138,6 +138,7 @@
         setTimeout(() => {
           alert('¡Bienvenido, ' + user + '! (Aquí iría tu dashboard)');
           clearFeedback();
+          window.location.href = "../../frontend/pages/dashboard.html";
         }, 800);
       } else {
         showFeedback('Usuario o contraseña incorrectos.', 'error');

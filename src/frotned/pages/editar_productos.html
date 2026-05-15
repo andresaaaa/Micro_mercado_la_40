@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micromercado La 40 - Nuevo Producto</title>
-    <link rel="stylesheet" href="../style/registrar_productos.css">
+    <title>Micromercado La 40 - Editar Producto</title>
+    <link rel="stylesheet" href="..\style\editar_productos.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
     <div class="container">
@@ -20,7 +22,7 @@
                 <a href="productos.html" class="nav-item active"><i data-lucide="package"></i> Productos</a>
                 <a href="inventario.html" class="nav-item"><i data-lucide="archive"></i> Inventario</a>
                 <a href="#" class="nav-item"><i data-lucide="arrow-left-right"></i> Entradas</a>
-                <a href="nueva_salida.html" class="nav-item"><i data-lucide="arrow-up-right"></i> Salidas</a>
+                <a href="nueva_salida.html"  class="nav-item"><i data-lucide="arrow-up-right"></i> Salidas</a>
                 <a href="#" class="nav-item"><i data-lucide="bar-chart-3"></i> Reportes</a>
                 <a href="#" class="nav-item"><i data-lucide="users"></i> Usuarios</a>
                 <a href="#" class="nav-item"><i data-lucide="settings"></i> Configuración</a>
@@ -34,8 +36,8 @@
         <main class="main-content">
             <header class="header">
                 <div class="welcome-text">
-                    <h1>Nuevo Producto</h1>
-                    <p>Completa la información del producto.</p>
+                    <h1>Editar Producto</h1>
+                    <p>Modifica la información del producto.</p>
                 </div>
                 <div class="user-profile">
                     <div class="notification-icon">
@@ -51,30 +53,29 @@
             </header>
 
             <section class="card form-card">
-                <form id="product-form">
+                <form id="edit-product-form">
                     <div class="form-grid">
                         
                         <div class="form-group">
                             <label for="codigo">Código</label>
-                            <input type="text" id="codigo" placeholder="Ej. 7501234567890">
+                            <input type="text" id="codigo" value="P001">
                         </div>
 
                         <div class="form-group">
                             <label for="codigo-barras">Código de barras</label>
-                            <input type="text" id="codigo-barras" placeholder="Ej. 7501234567890">
+                            <input type="text" id="codigo-barras" value="7501234567890">
                         </div>
 
                         <div class="form-group full-width">
                             <label for="nombre">Nombre del producto</label>
-                            <input type="text" id="nombre" placeholder="Ej. Arroz Diana (1kg)">
+                            <input type="text" id="nombre" value="Arroz Diana (1kg)">
                         </div>
 
                         <div class="form-group">
                             <label for="categoria">Categoría</label>
                             <div class="select-wrapper">
                                 <select id="categoria">
-                                    <option value="" disabled selected>Selecciona categoría</option>
-                                    <option value="abarrotes">Abarrotes</option>
+                                    <option value="abarrotes" selected>Abarrotes</option>
                                     <option value="lacteos">Lácteos</option>
                                     <option value="bebidas">Bebidas</option>
                                 </select>
@@ -85,10 +86,9 @@
                             <label for="unidad">Unidad de medida</label>
                             <div class="select-wrapper">
                                 <select id="unidad">
-                                    <option value="" disabled selected>Selecciona unidad</option>
+                                    <option value="unidad" selected>Unidad</option>
                                     <option value="kg">Kilogramo (kg)</option>
                                     <option value="litro">Litro (1L)</option>
-                                    <option value="unidad">Unidad (und)</option>
                                 </select>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             <label for="precio-venta">Precio de venta</label>
                             <div class="input-prefix-container">
                                 <span class="input-prefix">$</span>
-                                <input type="number" id="precio-venta" placeholder="0" min="0">
+                                <input type="text" id="precio-venta" value="4.200">
                             </div>
                         </div>
 
@@ -105,18 +105,18 @@
                             <label for="precio-compra">Precio de compra</label>
                             <div class="input-prefix-container">
                                 <span class="input-prefix">$</span>
-                                <input type="number" id="precio-compra" placeholder="0" min="0">
+                                <input type="text" id="precio-compra" value="3.500">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="stock-inicial">Stock inicial</label>
-                            <input type="number" id="stock-inicial" placeholder="Cantidad" min="0">
+                            <label for="stock-actual">Stock actual</label>
+                            <input type="number" id="stock-actual" value="25">
                         </div>
 
                         <div class="form-group">
                             <label for="stock-minimo">Stock mínimo</label>
-                            <input type="number" id="stock-minimo" placeholder="Cantidad" min="0">
+                            <input type="number" id="stock-minimo" value="10">
                         </div>
 
                         <div class="form-group full-width">
@@ -133,14 +133,12 @@
                             </div>
                         </div>
 
-                        
-
                     </div>
 
                     <div class="form-actions">
                         <button type="button" class="btn btn-cancel" id="btn-cancelar">Cancelar</button>
                         <button type="submit" class="btn btn-save">
-                            <i data-lucide="save"></i> Guardar Producto
+                            <i data-lucide="save"></i> Actualizar Producto
                         </button>
                     </div>
                 </form>
@@ -152,6 +150,6 @@
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../backend/registrar_producto.js"></script>
+    <script src="../../backend/editar_productos.js"></script>
 </body>
 </html>

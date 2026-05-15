@@ -28,6 +28,7 @@ body {
     min-height: 100vh;
 }
 
+
 /* --- BARRA LATERAL (SIDEBAR) --- */
 .sidebar {
     width: 260px;
@@ -156,17 +157,7 @@ body {
 .notification-icon { position: relative; cursor: pointer; color: var(--text-muted); }
 .notification-icon .badge { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background-color: #ff5252; border-radius: 50%; }
 .profile-info { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-
-.avatar {
-    width: 36px;
-    height: 36px;
-    background-color: #e0e0e0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-}
+.avatar { width: 36px; height: 36px; background-color: #e0e0e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
 
 /* Tarjeta Formulario */
 .card {
@@ -214,10 +205,6 @@ select {
     transition: border-color 0.2s;
 }
 
-input::placeholder {
-    color: #a0aec0;
-}
-
 input:focus, select:focus {
     border-color: #a0aec0;
 }
@@ -256,7 +243,7 @@ input:focus, select:focus {
     font-weight: 500;
 }
 
-/* Ocultar flecha nativa de select y personalizar de forma limpia */
+/* Ocultar flecha nativa de select */
 .select-wrapper {
     position: relative;
 }
@@ -302,9 +289,7 @@ select {
     border: 1px solid var(--input-border);
 }
 
-.btn-cancel:hover {
-    background-color: #f7fafc;
-}
+.btn-cancel:hover { background-color: #f7fafc; }
 
 .btn-save {
     background-color: var(--green-button);
@@ -312,19 +297,13 @@ select {
     border: none;
 }
 
-.btn-save:hover {
-    background-color: #356335;
-}
-
-.btn-save i {
-    width: 18px;
-    height: 18px;
-}
+.btn-save:hover { background-color: #356335; }
+.btn-save i { width: 18px; height: 18px; }
 
 /* Footer */
 .footer {
     text-align: center;
-    padding: 10px 0;
+    padding: 16px 0;
     color: var(--text-muted);
     font-size: 0.85rem;
     margin-top: auto;

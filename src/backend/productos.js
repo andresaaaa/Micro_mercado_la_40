@@ -38,9 +38,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombreProducto = row.cells[1].textContent;
 
         if (button.classList.contains("edit")) {
-            alert(`Editar producto: ${codigoProducto} - ${nombreProducto}`);
+            window.location.href="../../frotned/pages/editar_productos.html";
         } else if (button.classList.contains("disable")) {
-            alert(`Cambiar estado/Desactivar producto: ${codigoProducto}`);
+            window.location.href="../../frotned/pages/estado_prodcutos.html";
         }
+    });
+
+    // Acción del botón Cerrar Sesión
+    const logoutBtn = document.querySelector(".logout-btn");
+    logoutBtn.addEventListener("click", () => {
+        Swal.fire({
+            title: '¿Estás seguro de que deseas cerrar sesión?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#437c43',
+            cancelButtonColor: '#6d6d6dff',
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../../../index.html";
+            }
+        });    
     });
 });

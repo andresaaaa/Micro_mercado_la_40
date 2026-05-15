@@ -2,15 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inicializar los iconos de Lucide
     lucide.createIcons();
 
-    const productForm = document.getElementById("product-form");
+    const editForm = document.getElementById("edit-product-form");
     const btnCancelar = document.getElementById("btn-cancelar");
 
-    // Evento al enviar el formulario (Guardar Producto)
-    productForm.addEventListener("submit", (e) => {
+    // Evento al enviar el formulario (Actualizar Producto)
+    editForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Captura de datos básica del formulario
-        const formData = {
+        // Recolección de los datos modificados
+        const updatedData = {
             codigo: document.getElementById("codigo").value,
             codigoBarras: document.getElementById("codigo-barras").value,
             nombre: document.getElementById("nombre").value,
@@ -18,19 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
             unidad: document.getElementById("unidad").value,
             precioVenta: document.getElementById("precio-venta").value,
             precioCompra: document.getElementById("precio-compra").value,
-            stockInicial: document.getElementById("stock-inicial").value,
+            stockActual: document.getElementById("stock-actual").value,
             stockMinimo: document.getElementById("stock-minimo").value,
             estado: document.querySelector('input[name="estado"]:checked').value
         };
 
-        console.log("Datos del producto listo para enviar:", formData);
+        console.log("Datos actualizados listos para sincronizar:", updatedData);
         Swal.fire({
-            text: `¡Producto "${formData.nombre || 'Sin nombre'}" guardado con éxito con estado: ${formData.estado}!`,
+            text: `¡El producto "${updatedData.nombre}" (Código: ${updatedData.codigo}) se ha actualizado con éxito!`,
             icon: 'success',
             confirmButtonColor: '#437c43',
-        })
-        
-        // Aquí podrás conectar más adelante tu lógica de backend/Supabase
+        });
     });
 
     // Acción del botón Cancelar
@@ -50,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-    
+
     // Acción del botón Cerrar Sesión
     const logoutBtn = document.querySelector(".logout-btn");
     logoutBtn.addEventListener("click", () => {

@@ -6,9 +6,19 @@
     --text-muted: #7e7e7e;
     --green-theme: #e8f5e9;
     --green-dark: #386f38;
-    --green-button: #437c43;
     --border-color: #eaeaea;
     --input-border: #e2e8f0;
+    
+    /* Estados de Badges y Botones de Acción */
+    --badge-active-bg: #e8f5e9;
+    --badge-active-text: #2e7d32;
+    --badge-inactive-bg: #ffebee;
+    --badge-inactive-text: #c62828;
+    
+    --btn-disable-bg: #e8f5e9;
+    --btn-disable-text: #2e7d32;
+    --btn-enable-bg: #f1f5f9;
+    --btn-enable-text: #475569;
 }
 
 * {
@@ -136,10 +146,10 @@ body {
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
 /* Encabezado */
@@ -149,131 +159,126 @@ body {
     align-items: center;
 }
 
-.welcome-text h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+.welcome-text h1 { font-size: 1.6rem; font-weight: 700; color: #111827; margin-bottom: 4px; }
 .welcome-text p { color: var(--text-muted); font-size: 0.9rem; }
 
 .user-profile { display: flex; align-items: center; gap: 24px; }
 .notification-icon { position: relative; cursor: pointer; color: var(--text-muted); }
 .notification-icon .badge { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background-color: #ff5252; border-radius: 50%; }
 .profile-info { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.avatar { width: 36px; height: 36px; background-color: #e0e0e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
 
-.avatar {
-    width: 36px;
-    height: 36px;
-    background-color: #e0e0e0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-}
-
-/* Tarjeta Formulario */
-.card {
+/* CONTENEDOR DE LA TABLA (CARD) */
+.table-container {
     background-color: #ffffff;
     border-radius: 12px;
     border: 1px solid var(--border-color);
-    padding: 32px;
+    padding: 8px 16px;
+    overflow-x: auto;
 }
 
-/* Grid del Formulario (2 columnas nativas) */
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 18px;
-    row-gap: 8px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group.full-width {
-    grid-column: span 2;
-}
-
-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1a1a1a;
-}
-
-input[type="text"],
-input[type="number"],
-select {
+.status-table {
     width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--input-border);
-    border-radius: 8px;
+    border-collapse: collapse;
+}
+
+.status-table th, 
+.status-table td {
+    padding: 16px 20px;
+    text-align: left;
     font-size: 0.95rem;
-    color: var(--text-main);
-    background-color: #ffffff;
-    outline: none;
-    transition: border-color 0.2s;
+    border-bottom: 1px solid #f1f5f9;
 }
 
-input::placeholder {
-    color: #a0aec0;
+.status-table th {
+    color: #4a5568;
+    font-weight: 600;
+    background-color: #fafafa;
 }
 
-input:focus, select:focus {
-    border-color: #a0aec0;
+.bold { font-weight: 500; color: #1a1a1a; }
+.text-center { text-align: center !important; }
+
+/* Etiquetas de Estado (Badges) */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
 }
 
-/* Campos con prefijo ($) */
-.input-prefix-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
+.status-badge.active { background-color: var(--badge-active-bg); color: var(--badge-active-text); }
+.status-badge.inactive { background-color: var(--badge-inactive-bg); color: var(--badge-inactive-text); }
 
-.input-prefix {
-    position: absolute;
-    left: 16px;
-    color: var(--text-main);
-    font-size: 0.95rem;
-}
-
-.prefix-group input {
-    padding-left: 32px;
-}
-
-/* Inputs de tipo Radio */
-.radio-group {
-    display: flex;
-    gap: 24px;
-    margin-top: 4px;
-}
-
-.radio-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* Botones de acción explícitos (Deshabilitar / Habilitar) */
+.btn-action {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
     cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
+    transition: filter 0.2s;
+    min-width: 110px;
 }
 
-/* Ocultar flecha nativa de select y personalizar de forma limpia */
-.select-wrapper {
-    position: relative;
+.btn-action:hover {
+    filter: brightness(0.95);
 }
-.select-wrapper::after {
-    content: "▼";
-    font-size: 0.7rem;
-    color: #718096;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
+
+.btn-disable {
+    background-color: var(--btn-disable-bg);
+    color: var(--btn-disable-text);
 }
-select {
-    appearance: none;
-    -webkit-appearance: none;
+
+.btn-enable {
+    background-color: var(--btn-enable-bg);
+    color: var(--btn-enable-text);
 }
+
+/* SECCIÓN PAGINACIÓN */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding: 0 4px;
+}
+
+.pagination-info { font-size: 0.9rem; color: var(--text-muted); }
+.pagination-controls { display: flex; gap: 8px; }
+
+.page-btn {
+    background-color: #ffffff;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #4a5568;
+}
+
+.page-btn.active {
+    background-color: var(--green-theme);
+    color: var(--green-dark);
+    border-color: transparent;
+    font-weight: bold;
+}
+
+.page-btn:disabled {
+    background-color: #f7fafc;
+    color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.page-btn.nav-btn i { width: 16px; height: 16px; }
 
 /* Botones de Acción */
 .form-actions {
@@ -285,14 +290,14 @@ select {
 }
 
 .btn {
-    padding: 12px 24px;
+    padding: 8px 14px;
     border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+
     transition: background-color 0.2s;
 }
 
@@ -306,25 +311,11 @@ select {
     background-color: #f7fafc;
 }
 
-.btn-save {
-    background-color: var(--green-button);
-    color: #ffffff;
-    border: none;
-}
-
-.btn-save:hover {
-    background-color: #356335;
-}
-
-.btn-save i {
-    width: 18px;
-    height: 18px;
-}
 
 /* Footer */
 .footer {
     text-align: center;
-    padding: 10px 0;
+    padding: 16px 0;
     color: var(--text-muted);
     font-size: 0.85rem;
     margin-top: auto;

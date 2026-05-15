@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micromercado La 40 - Administrar Productos</title>
-    <link rel="stylesheet" href="../../frotned/style/productos.css">
+    <title>Micromercado La 40 - Estado de Productos</title>
+    <link rel="stylesheet" href="../style/estado_productos.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -14,6 +14,7 @@
             <div class="logo-container">
                 <img src="../../img/logo1.png" width="50%" alt="Logo Micromercado La 40">
             </div>
+
 
             <nav class="nav-menu">
                 <a href="dashboard.html" class="nav-item"><i data-lucide="home"></i> Inicio</a>
@@ -34,8 +35,8 @@
         <main class="main-content">
             <header class="header">
                 <div class="welcome-text">
-                    <h1>Productos</h1>
-                    <p>Administra tus productos registrados.</p>
+                    <h1>Deshabilitar / Suspender Producto</h1>
+                    <p>Administra el estado de tus productos.</p>
                 </div>
                 <div class="user-profile">
                     <div class="notification-icon">
@@ -50,18 +51,8 @@
                 </div>
             </header>
 
-            <section class="toolbar">
-                <div class="search-container">
-                    <i data-lucide="search" class="search-icon"></i>
-                    <input type="text" id="search-input" placeholder="Buscar producto...">
-                </div>
-                <button class="btn btn-add" id="btn-nuevo-producto">
-                    <i data-lucide="plus"></i> Nuevo Producto
-                </button>
-            </section>
-
             <section class="card table-container">
-                <table class="main-table">
+                <table class="status-table">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -79,11 +70,8 @@
                             <td>Abarrotes</td>
                             <td>25</td>
                             <td><span class="status-badge active">Activo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
-                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
-                                </div>
+                            <td class="text-center">
+                                <button class="btn-action btn-disable" data-id="P001">Deshabilitar</button>
                             </td>
                         </tr>
                         <tr>
@@ -92,11 +80,8 @@
                             <td>Abarrotes</td>
                             <td>18</td>
                             <td><span class="status-badge active">Activo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
-                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
-                                </div>
+                            <td class="text-center">
+                                <button class="btn-action btn-disable" data-id="P002">Deshabilitar</button>
                             </td>
                         </tr>
                         <tr>
@@ -105,11 +90,8 @@
                             <td>Lácteos</td>
                             <td>5</td>
                             <td><span class="status-badge active">Activo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
-                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
-                                </div>
+                            <td class="text-center">
+                                <button class="btn-action btn-disable" data-id="P003">Deshabilitar</button>
                             </td>
                         </tr>
                         <tr>
@@ -118,11 +100,8 @@
                             <td>Abarrotes</td>
                             <td>12</td>
                             <td><span class="status-badge inactive">Inactivo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
-                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
-                                </div>
+                            <td class="text-center">
+                                <button class="btn-action btn-enable" data-id="P004">Habilitar</button>
                             </td>
                         </tr>
                         <tr>
@@ -131,11 +110,8 @@
                             <td>Enlatados</td>
                             <td>0</td>
                             <td><span class="status-badge inactive">Inactivo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
-                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
-                                </div>
+                            <td class="text-center">
+                                <button class="btn-action btn-enable" data-id="P005">Habilitar</button>
                             </td>
                         </tr>
                         <tr>
@@ -144,11 +120,8 @@
                             <td>Enlatados</td>
                             <td>4</td>
                             <td><span class="status-badge active">Activo</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit" title="Editar"><i data-lucide="edit-2"></i></button>
-                                    <button class="action-btn disable" title="Desactivar"><i data-lucide="ban"></i></button>
-                                </div>
+                            <td class="text-center">
+                                <button class="btn-action btn-disable" data-id="P006">Deshabilitar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -161,6 +134,8 @@
                     <button class="page-btn nav-btn" disabled><i data-lucide="chevron-left"></i></button>
                     <button class="page-btn active">1</button>
                     <button class="page-btn nav-btn" disabled><i data-lucide="chevron-right"></i></button>
+                    <br>
+                    <button type="button" class="btn btn-cancel" id="btn-cancelar">Regresar</button>
                 </div>
             </section>
 
@@ -169,7 +144,7 @@
             </footer>
         </main>
     </div>
-
-    <script src="../../backend/productos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../backend/estado_productos.js"></script>
 </body>
 </html>

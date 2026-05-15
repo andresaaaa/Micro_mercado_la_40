@@ -24,7 +24,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Acción del botón Cerrar Sesión
     const logoutBtn = document.querySelector(".logout-btn");
     logoutBtn.addEventListener("click", () => {
-        alert("Cerrando sesión de Administrador...");
+        Swal.fire({
+            title: '¿Estás seguro de que deseas cerrar sesión?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#437c43',
+            cancelButtonColor: '#6d6d6dff',
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../../../index.html";
+            }
+        });    
     });
 
     // Enlaces de "Ver todos"
@@ -35,4 +47,5 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Redireccionando a la sección completa...");
         });
     });
+
 });
