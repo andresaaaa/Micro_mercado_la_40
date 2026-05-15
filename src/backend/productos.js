@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Redirección o simulación al hacer clic en "+ Nuevo Producto"
     const btnNuevoProducto = document.getElementById("btn-nuevo-producto");
     btnNuevoProducto.addEventListener("click", () => {
-        window.location.href="../../frotned/pages/registrar_productos.html"
+        window.location.href="../../frontned/pages/registrar_productos.html"
         // Aquí podrías usar: window.location.href = "productos.html";
     });
 
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombreProducto = row.cells[1].textContent;
 
         if (button.classList.contains("edit")) {
-            window.location.href="../../frotned/pages/editar_productos.html";
+            window.location.href="../../frontned/pages/editar_productos.html";
         } else if (button.classList.contains("disable")) {
-            window.location.href="../../frotned/pages/estado_prodcutos.html";
+            window.location.href="../../frontned/pages/estado_prodcutos.html";
         }
     });
 
