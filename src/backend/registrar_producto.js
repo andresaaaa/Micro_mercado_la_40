@@ -36,14 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Acción del botón Cancelar
     btnCancelar.addEventListener("click", () => {
         Swal.fire({
-            title: '¿Estás seguro de que deseas cancelar?',
+            title: '¿Estás seguro de que deseas regresar?',
             text: '¡Se perderán los cambios!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#437c43',
             cancelButtonColor: '#6d6d6dff',
-            confirmButtonText: 'Cancelar',
-            cancelButtonText: 'Continuar'
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cerrar'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = "productos.html";

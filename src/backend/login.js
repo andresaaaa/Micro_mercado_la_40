@@ -136,7 +136,11 @@
         // Aquí redirigirías al dashboard:
         // window.location.href = '/dashboard';
         setTimeout(() => {
-          alert('¡Bienvenido, ' + user + '! (Aquí iría tu dashboard)');
+          Swal.fire({
+            text: `¡Bienvenido, ${user}!`,
+            icon: 'success',
+            confirmButtonColor: '#437c43',
+          })
           clearFeedback();
           window.location.href = "src/frontend/pages/dashboard.html";
         }, 800);
