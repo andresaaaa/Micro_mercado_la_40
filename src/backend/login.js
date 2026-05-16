@@ -1,3 +1,4 @@
+import { supabaseClient } from './conexion.js';
 /* =========================================
    MICROMERCADO LA 40 – Login Script
    ========================================= */
@@ -6,12 +7,12 @@
   'use strict';
 
   /* ---- Referencias al DOM ---- */
-  const btnLogin    = document.getElementById('btnLogin');
-  const inputUser   = document.getElementById('usuario');
-  const inputPass   = document.getElementById('contrasena');
-  const togglePass  = document.getElementById('togglePass');
-  const eyeIcon     = document.getElementById('eyeIcon');
-  const feedback    = document.getElementById('loginFeedback');
+  const btnLogin = document.getElementById('btnLogin');
+  const inputUser = document.getElementById('usuario');
+  const inputPass = document.getElementById('contrasena');
+  const togglePass = document.getElementById('togglePass');
+  const eyeIcon = document.getElementById('eyeIcon');
+  const feedback = document.getElementById('loginFeedback');
   const checkRemember = document.getElementById('recordarme');
 
   /* =========================================
@@ -23,14 +24,14 @@
     // Actualizar ícono
     eyeIcon.innerHTML = isPassword
       ? /* ojo tachado */
-        `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C7 20 2.73 16.39 1 12
+      `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C7 20 2.73 16.39 1 12
            a10.05 10.05 0 0 1 5.17-5.65M9.9 4.24A9.12 9.12 0 0 1 12 4
            c5 0 9.27 3.61 11 8a10.1 10.1 0 0 1-2.05 3.37"
            stroke="#9cbbad" stroke-width="1.8" fill="none" stroke-linecap="round"/>
          <line x1="1" y1="1" x2="23" y2="23"
            stroke="#9cbbad" stroke-width="1.8" stroke-linecap="round"/>`
       : /* ojo abierto */
-        `<path d="M1 12 C4 6 20 6 23 12 C20 18 4 18 1 12Z"
+      `<path d="M1 12 C4 6 20 6 23 12 C20 18 4 18 1 12Z"
            stroke="#9cbbad" stroke-width="1.8" fill="none"/>
          <circle cx="12" cy="12" r="3"
            stroke="#9cbbad" stroke-width="1.8" fill="none"/>`;
@@ -51,11 +52,11 @@
      ========================================= */
   function showFeedback(msg, type) {
     feedback.textContent = msg;
-    feedback.className   = 'login-feedback ' + type;
+    feedback.className = 'login-feedback ' + type;
   }
   function clearFeedback() {
     feedback.textContent = '';
-    feedback.className   = 'login-feedback';
+    feedback.className = 'login-feedback';
   }
 
   function shakeCard() {
@@ -91,16 +92,7 @@
     return true;
   }
 
-  /* =========================================
-     5. SIMULAR INICIO DE SESIÓN
-     Reemplaza esta función con tu llamada real al backend.
-     ========================================= */
-  async function simulateLogin(user, pass) {
-    // Simula latencia de red (800 ms)
-    await new Promise(r => setTimeout(r, 800));
-    // Credenciales de demo
-    return (user === 'admin' && pass === '1234');
-  }
+
 
   /* =========================================
      6. CLICK EN "INICIAR SESIÓN"
@@ -116,43 +108,46 @@
     const user = inputUser.value.trim();
     const pass = inputPass.value.trim();
 
+    console.log(user, pass);
     // Estado de carga
-    btnLogin.disabled     = true;
-    btnLogin.textContent  = 'Verificando…';
+    btnLogin.disabled = true;
+    btnLogin.textContent = 'Verificando…';
     showFeedback('Iniciando sesión, por favor espera…', 'loading');
 
     try {
-      const ok = await simulateLogin(user, pass);
 
-      if (ok) {
-        // Recordarme
-        if (checkRemember.checked) {
-          localStorage.setItem('la40_user', user);
-        } else {
-          localStorage.removeItem('la40_user');
-        }
+      const { data: usuario, error } = await supabaseClient
+        .from('usuarios')
+        .select('id, rol,nombre,estado')
+        .eq('correo', user)
+        .eq('password', pass)
+        .eq('estado', true)
 
-        showFeedback('✓ Acceso concedido. Redirigiendo…', 'loading');
-        // Aquí redirigirías al dashboard:
-        // window.location.href = '/dashboard';
-        setTimeout(() => {
-          Swal.fire({
-            text: `¡Bienvenido, ${user}!`,
-            icon: 'success',
-            confirmButtonColor: '#437c43',
-          })
+      if (error) throw error;
+      if (usuario.length === 0) {
+        alert("Acceso denegado: Correo o contraseña incorrectos, o usuario inactivo.");
+        return;
+      }
+      console.log(usuario);
+      const usuarioLogueado = usuario[0];
+
+      showFeedback('✓ Acceso concedido. Redirigiendo…', 'loading');
+      Swal.fire({
+        text: `¡Bienvenido, ${usuarioLogueado.nombre}!`,
+        icon: 'success',
+        confirmButtonColor: '#437c43',
+      }).then((result) => {
+        if (result.isConfirmed) {
           clearFeedback();
           window.location.href = "src/frontend/pages/dashboard.html";
-        }, 800);
-      } else {
-        showFeedback('Usuario o contraseña incorrectos.', 'error');
-        shakeCard();
-        inputPass.value = '';
-        inputPass.focus();
-      }
-    } catch (err) {
-      showFeedback('Error de conexión. Intenta de nuevo.', 'error');
-      console.error(err);
+        }
+      });
+
+    } catch (error) {
+      showFeedback('Usuario o contraseña incorrectos.', 'error');
+      shakeCard();
+      inputPass.value = '';
+      inputPass.focus();
     } finally {
       // Restaurar botón
       btnLogin.disabled = false;
