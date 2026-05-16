@@ -181,14 +181,14 @@ import { supabaseClient } from './conexion.js';
      ========================================= */
   const forgotLink = document.querySelector('.forgot-link');
   forgotLink.addEventListener('click', function (e) {
-    e.preventDefault();
-    const user = inputUser.value.trim();
-    if (user) {
-      alert('Se enviará un correo de recuperación para: ' + user);
-    } else {
-      alert('Ingresa tu usuario primero para recuperar tu contraseña.');
-      inputUser.focus();
-    }
+    // e.preventDefault();
+    // const user = inputUser.value.trim();
+    // if (user) {
+    //   alert('Se enviará un correo de recuperación para: ' + user);
+    // } else {
+    //   alert('Ingresa tu usuario primero para recuperar tu contraseña.');
+    //   inputUser.focus();
+    // }
   });
 
 })();
