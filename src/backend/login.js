@@ -130,6 +130,8 @@ import { supabaseClient } from './conexion.js';
       }
       console.log(usuario);
       const usuarioLogueado = usuario[0];
+      localStorage.setItem("usuario", JSON.stringify(usuario[0]));
+      console.log(usuario[0]);
 
       showFeedback('✓ Acceso concedido. Redirigiendo…', 'loading');
       Swal.fire({
