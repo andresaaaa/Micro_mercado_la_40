@@ -216,11 +216,14 @@ body {
 
 /* CONTENEDOR DE TABLA (CARD) */
 .table-container {
+    height: 450px;
     background-color: #ffffff;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     padding: 8px 16px; /* Ajuste interno para la tabla */
-    overflow-x: auto;
+    overflow-y: auto;
+
+    
 }
 
 .main-table {

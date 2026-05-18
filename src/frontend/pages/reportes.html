@@ -76,7 +76,7 @@
                     </div>
                     <div class="kpi-info">
                         <h3>Total Salidas / Ventas</h3>
-                        <p class="kpi-value">$ 1'245.000</p>
+                        <p class="kpi-value" id="kpi-ventas">$ 0</p>
                         <span class="kpi-subtext">En el rango seleccionado</span>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="kpi-info">
                         <h3>Inversión en Inventario</h3>
-                        <p class="kpi-value">$ 4'532.000</p>
+                        <p class="kpi-value" id="kpi-inversion">$ 0</p>
                         <span class="kpi-subtext">Valor total del stock actual</span>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="kpi-info">
                         <h3>Productos Críticos</h3>
-                        <p class="kpi-value">3</p>
+                        <p class="kpi-value" id="kpi-criticos">0</p>
                         <span class="kpi-subtext">Requieren reabastecimiento</span>
                     </div>
                 </div>
@@ -117,39 +117,8 @@
                             <th>Total Recaudado</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="bold text-green">#1</td>
-                            <td>P001</td>
-                            <td class="bold">Arroz Diana (1kg)</td>
-                            <td>Abarrotes</td>
-                            <td class="text-center bold">142</td>
-                            <td class="bold">$ 596.400</td>
-                        </tr>
-                        <tr>
-                            <td class="bold text-green">#2</td>
-                            <td>P003</td>
-                            <td class="bold">Leche Entera (1L)</td>
-                            <td>Lácteos</td>
-                            <td class="text-center bold">98</td>
-                            <td class="bold">$ 333.200</td>
-                        </tr>
-                        <tr>
-                            <td class="bold text-green">#3</td>
-                            <td>P002</td>
-                            <td class="bold">Aceite Girasol (900ml)</td>
-                            <td>Abarrotes</td>
-                            <td class="text-center bold">32</td>
-                            <td class="bold">$ 284.800</td>
-                        </tr>
-                        <tr>
-                            <td class="bold text-muted">#4</td>
-                            <td>P004</td>
-                            <td class="bold">Azúcar La Muñeca (1kg)</td>
-                            <td>Abarrotes</td>
-                            <td class="text-center bold">10</td>
-                            <td class="bold">$ 36.000</td>
-                        </tr>
+                    <tbody id="report-table-body">
+                        <!-- Las filas dinámicas se inyectan aquí -->
                     </tbody>
                 </table>
             </section>
@@ -164,7 +133,9 @@
         </main>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../backend/reportes.js"></script>
+    <script type="module" src="../../backend/reportes.js"></script>
 </body>
 </html>

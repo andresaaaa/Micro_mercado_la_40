@@ -58,37 +58,40 @@
                         
                         <div class="form-group">
                             <label for="codigo">Código</label>
-                            <input type="text" id="codigo" value="P001">
+                            <input type="text" id="codigo" readonly class="input-readonly">
                         </div>
 
                         <div class="form-group">
-                            <label for="codigo-barras">Código de barras</label>
-                            <input type="text" id="codigo-barras" value="7501234567890">
+                            <label for="proveedor">Proveedor</label>
+                            <div class="select-wrapper">
+                                <select name="proveedor" id="proveedor">
+                                    <option value="" disabled selected>Selecciona proveedor</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group full-width">
                             <label for="nombre">Nombre del producto</label>
-                            <input type="text" id="nombre" value="Arroz Diana (1kg)">
+                            <input type="text" id="nombre" value="">
                         </div>
 
                         <div class="form-group">
                             <label for="categoria">Categoría</label>
                             <div class="select-wrapper">
                                 <select id="categoria">
-                                    <option value="abarrotes" selected>Abarrotes</option>
-                                    <option value="lacteos">Lácteos</option>
-                                    <option value="bebidas">Bebidas</option>
+                                    <option value="" disabled selected>Selecciona categoría</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="unidad">Unidad de medida</label>
+                            <label for="medida">Unidad de medida</label>
                             <div class="select-wrapper">
-                                <select id="unidad">
-                                    <option value="unidad" selected>Unidad</option>
+                                <select id="medida">
+                                    <option value="" disabled selected>Selecciona unidad</option>
                                     <option value="kg">Kilogramo (kg)</option>
                                     <option value="litro">Litro (1L)</option>
+                                    <option value="unidad">Unidad (ud)</option>
                                 </select>
                             </div>
                         </div>
@@ -97,7 +100,7 @@
                             <label for="precio-venta">Precio de venta</label>
                             <div class="input-prefix-container">
                                 <span class="input-prefix">$</span>
-                                <input type="text" id="precio-venta" value="4.200">
+                                <input type="number" id="precio-venta" value="">
                             </div>
                         </div>
 
@@ -105,18 +108,13 @@
                             <label for="precio-compra">Precio de compra</label>
                             <div class="input-prefix-container">
                                 <span class="input-prefix">$</span>
-                                <input type="text" id="precio-compra" value="3.500">
+                                <input type="number" id="precio-compra" value="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="stock-actual">Stock actual</label>
-                            <input type="number" id="stock-actual" value="25">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="stock-minimo">Stock mínimo</label>
-                            <input type="number" id="stock-minimo" value="10">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" min="0" value="0">
                         </div>
 
                         <div class="form-group full-width">
@@ -151,6 +149,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../backend/editar_productos.js"></script>
+    <script type="module" src="../../backend/editar_productos.js"></script>
 </body>
 </html>

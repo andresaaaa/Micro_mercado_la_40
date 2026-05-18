@@ -1,16 +1,37 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { supabaseClient } from './conexion.js';
+document.addEventListener("DOMContentLoaded", async () => {
     // Inicializar los iconos de Lucide (usados en sidebar y paginación)
     lucide.createIcons();
 
     const tableBody = document.getElementById("table-body");
 
+    // Cargar productos al iniciar
+    const { data: productos, error } = await supabaseClient.from('productos').select('*');
+    if (error) return console.error('Error al cargar productos:', error);
+    
+    // Llenar la tabla con productos
+    productos.forEach(producto => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${producto.id}</td>
+            <td>${producto.nombre}</td>
+            <td>${producto.categoria}</td>
+            <td>${producto.stock}</td>
+            <td>${producto.estado ? '<span class="status-badge active">Activo</span>' : '<span class="status-badge inactive">Inactivo</span>'}</td>
+            <td class="text-center">
+                ${producto.estado ? '<button class="btn-action btn-disable" data-id="${producto.id}">Deshabilitar</button>' : '<button class="btn-action btn-enable" data-id="${producto.id}">Habilitar</button>'}
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+
     // Manejo del cambio de estado mediante delegación de eventos
-    tableBody.addEventListener("click", (e) => {
+    tableBody.addEventListener("click", async (e) => {
         const button = e.target.closest(".btn-action");
         if (!button) return;
 
         const row = button.closest("tr");
-        const idProducto = button.getAttribute("data-id");
+        const idProducto = row.cells[0].textContent;
         const nombreProducto = row.cells[1].textContent;
         const badgeCell = row.cells[4].querySelector(".status-badge");
 
@@ -24,8 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cancelButtonColor: '#6d6d6dff',
             confirmButtonText: 'Deshabilitar',
             cancelButtonText: 'Cancelar'
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
+                    await supabaseClient.from('productos').update({ estado: false }).eq('id', idProducto);
                     badgeCell.textContent = "Inactivo";
                     badgeCell.className = "status-badge inactive";
 
@@ -49,8 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
             cancelButtonColor: '#6d6d6dff',
             confirmButtonText: 'Habilitar',
             cancelButtonText: 'Cancelar'
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
+                    await supabaseClient.from('productos').update({ estado: true }).eq('id', idProducto);
                      // Lógica para HABILITAR
                     badgeCell.textContent = "Activo";
                     badgeCell.className = "status-badge active";

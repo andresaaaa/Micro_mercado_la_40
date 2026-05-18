@@ -60,8 +60,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="codigo-barras">Código de barras</label>
-                            <input type="text" id="codigo-barras" placeholder="Ej. 7501234567890">
+                            <label for="proveedor">Proveedor</label>
+                            <div class="select-wrapper">
+                                <select name="proveedor" id="proveedor">
+                                    <option value="" disabled selected>Selecciona proveedor</option>
+                                    <option value="1">Juan Perez</option>
+                                    <option value="2">Maria Rodriguez</option>
+                                    <option value="3">Carlos Gomez</option>
+                                    <option value="4">Ana Martinez</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group full-width">
@@ -84,7 +92,7 @@
                         <div class="form-group">
                             <label for="unidad">Unidad de medida</label>
                             <div class="select-wrapper">
-                                <select id="unidad">
+                                <select id="medida">
                                     <option value="" disabled selected>Selecciona unidad</option>
                                     <option value="kg">Kilogramo (kg)</option>
                                     <option value="litro">Litro (1L)</option>
@@ -110,13 +118,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="stock-inicial">Stock inicial</label>
-                            <input type="number" id="stock-inicial" placeholder="Cantidad" min="0">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="stock-minimo">Stock mínimo</label>
-                            <input type="number" id="stock-minimo" placeholder="Cantidad" min="0">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" placeholder="Cantidad" min="0">
                         </div>
 
                         <div class="form-group full-width">
@@ -153,6 +156,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../backend/registrar_producto.js"></script>
+    <script type="module" src="../../backend/registrar_producto.js"></script>
 </body>
 </html>
