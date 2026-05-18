@@ -268,7 +268,7 @@ input[type="date"] {
 
 /* SECCIÓN TABLA REPORTE */
 .section-title {
-    height: 450px;
+    width: 450px;
     font-size: 1.1rem;
     font-weight: 700;
     color: #1a1a1a;

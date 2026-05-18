@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../style/dashboard.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
     <div class="container">
@@ -17,7 +19,7 @@
 
             <nav class="nav-menu">
                 <a href="dashboard.html" class="nav-item active"><i data-lucide="home"></i> Inicio</a>
-                <a href="registrar_productos.html" class="nav-item"><i data-lucide="package"></i> Productos</a>
+                <a href="productos.html" class="nav-item"><i data-lucide="package"></i> Productos</a>
                 <a href="inventario.html" class="nav-item"><i data-lucide="archive"></i> Inventario</a>
                 <a href="nueva_entrada.html" class="nav-item"><i data-lucide="arrow-left-right"></i> Entradas</a>
                 <a href="nueva_salida.html" class="nav-item"><i data-lucide="arrow-up-right"></i> Salidas</a>
@@ -54,7 +56,7 @@
                 <div class="card kpi-card">
                     <div class="kpi-info">
                         <h3>Total Productos</h3>
-                        <p class="kpi-value">128</p>
+                        <p class="kpi-value" id="kpi-total-productos">128</p>
                     </div>
                     <div class="kpi-icon-wrapper green">
                         <i data-lucide="box"></i>
@@ -64,7 +66,7 @@
                 <div class="card kpi-card">
                     <div class="kpi-info">
                         <h3>Entradas (Hoy)</h3>
-                        <p class="kpi-value">15</p>
+                        <p class="kpi-value" id="kpi-entradas-hoy">15</p>
                     </div>
                     <div class="kpi-icon-wrapper blue">
                         <i data-lucide="arrow-down"></i>
@@ -74,7 +76,7 @@
                 <div class="card kpi-card">
                     <div class="kpi-info">
                         <h3>Salidas (Hoy)</h3>
-                        <p class="kpi-value">8</p>
+                        <p class="kpi-value" id="kpi-salidas-hoy">8</p>
                     </div>
                     <div class="kpi-icon-wrapper orange">
                         <i data-lucide="arrow-up"></i>
@@ -84,7 +86,7 @@
                 <div class="card kpi-card">
                     <div class="kpi-info">
                         <h3>Productos Bajos</h3>
-                        <p class="kpi-value">12</p>
+                        <p class="kpi-value" id="kpi-productos-bajos">12</p>
                     </div>
                     <div class="kpi-icon-wrapper yellow">
                         <i data-lucide="alert-triangle"></i>
@@ -102,26 +104,9 @@
                                 <th class="text-right">Ventas</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody-mas-vendidos">
                             <tr>
-                                <td>Arroz Diana (1kg)</td>
-                                <td class="text-right bold">45</td>
-                            </tr>
-                            <tr>
-                                <td>Aceite Girasol (900ml)</td>
-                                <td class="text-right bold">38</td>
-                            </tr>
-                            <tr>
-                                <td>Azúcar La Muñeca (1kg)</td>
-                                <td class="text-right bold">32</td>
-                            </tr>
-                            <tr>
-                                <td>Harina P.A.N (1kg)</td>
-                                <td class="text-right bold">28</td>
-                            </tr>
-                            <tr>
-                                <td>Salsa de Tomate (200g)</td>
-                                <td class="text-right bold">25</td>
+                                <td colspan="2" class="text-center">Cargando...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -137,26 +122,9 @@
                                 <th class="text-right">Stock</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody-stock-bajo">
                             <tr>
-                                <td>Leche Entera (1L)</td>
-                                <td class="text-right bold text-danger">5</td>
-                            </tr>
-                            <tr>
-                                <td>Atún Van Camps (160g)</td>
-                                <td class="text-right bold text-danger">4</td>
-                            </tr>
-                            <tr>
-                                <td>Salsa de Tomate (200g)</td>
-                                <td class="text-right bold text-danger">3</td>
-                            </tr>
-                            <tr>
-                                <td>Sal Refisal (500g)</td>
-                                <td class="text-right bold text-danger">2</td>
-                            </tr>
-                            <tr>
-                                <td>Galletas Saltinas (6 und)</td>
-                                <td class="text-right bold text-danger">1</td>
+                                <td colspan="2" class="text-center">Cargando...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -170,8 +138,9 @@
         </main>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../backend/dahsboard.js"></script>
+    <script type="module" src="../../backend/dahsboard.js"></script>
 </body>
+
 </html>
