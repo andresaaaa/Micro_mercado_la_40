@@ -37,15 +37,6 @@ import { supabaseClient } from './conexion.js';
            stroke="#9cbbad" stroke-width="1.8" fill="none"/>`;
   });
 
-  /* =========================================
-     2. RECORDARME – persistir usuario
-     ========================================= */
-  // Al cargar: recuperar usuario si fue guardado
-  const savedUser = localStorage.getItem('la40_user');
-  if (savedUser) {
-    inputUser.value = savedUser;
-    checkRemember.checked = true;
-  }
 
   /* =========================================
      3. HELPERS DE FEEDBACK
