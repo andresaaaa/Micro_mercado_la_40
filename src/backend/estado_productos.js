@@ -1,5 +1,8 @@
 import { supabaseClient } from './conexion.js';
 document.addEventListener("DOMContentLoaded", async () => {
+    const nombre = localStorage.getItem('nombre') || 'Usuario';
+    const elPerfil = document.getElementById('nombre-usuario');
+    if (elPerfil) elPerfil.textContent = nombre;
     // Inicializar los iconos de Lucide (usados en sidebar y paginación)
     lucide.createIcons();
 

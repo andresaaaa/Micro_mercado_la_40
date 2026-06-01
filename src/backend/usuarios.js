@@ -1,6 +1,10 @@
 import { supabaseClient } from './conexion.js';
 
 document.addEventListener("DOMContentLoaded", () => {
+    const nombre = localStorage.getItem('nombre') || 'Usuario';
+    const elPerfil = document.getElementById('nombre-usuario');
+    if (elPerfil) elPerfil.textContent = nombre;
+
     lucide.createIcons();
 
     const tbody = document.getElementById("table-body");
@@ -72,11 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td ${rowClass}>${user.correo}</td>
                 <td ${rowClass}>${user.telefono || 'Sin registrar'}</td>
                 <td ${rowClass}><span class="role-badge ${roleClass}">${user.rol}</span></td>
-                <td class="text-center">
+                <td class="text-center" style="display: flex; gap: 5px; justify-content: center;">
                     <button class="btn-action ${btnClass}" data-id="${user.id}" data-estado="${user.estado}">
                         ${btnText}
                     </button>
+                    <button class="btn-action btn-edit" data-id="${user.id}" style="background-color: #b3e2b3ff; border-color: #b3e2b3ff;">
+                        Editar
+                    </button>
                 </td>
+                
             `;
             tbody.appendChild(tr);
         });
@@ -86,9 +94,114 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", renderUsuarios);
     filterRole.addEventListener("change", renderUsuarios);
 
-    // 4. Habilitar/Deshabilitar Usuarios
+    // 4. Habilitar/Deshabilitar y Editar Usuarios
     tbody.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("btn-action")) {
+        if (e.target.classList.contains("btn-edit")) {
+            const userId = e.target.getAttribute("data-id");
+            const user = usuariosList.find(u => u.id == userId);
+            if (!user) return;
+
+            const { value: formValues } = await Swal.fire({
+                title: 'Editar Usuario',
+                html: `
+                    <div style="display:flex; flex-direction:column; gap: 12px; text-align: left; margin-top: 10px;">
+                        <div>
+                            <label style="font-size: 13px; font-weight: bold; color: #437c43;">Nombre Completo *</label>
+                            <input id="edit-nombre" class="swal2-input" style="width: 100%; margin: 5px 0 0 0;" value="${user.nombre}">
+                        </div>
+                        <div>
+                            <label style="font-size: 13px; font-weight: bold; color: #437c43;">Correo Electrónico *</label>
+                            <input id="edit-correo" type="email" class="swal2-input" style="width: 100%; margin: 5px 0 0 0;" value="${user.correo}">
+                        </div>
+                        <div>
+                            <label style="font-size: 13px; font-weight: bold; color: #437c43;">Teléfono</label>
+                            <input id="edit-telefono" type="text" class="swal2-input" style="width: 100%; margin: 5px 0 0 0;" value="${user.telefono || ''}">
+                        </div>
+                        <div style="display:flex; gap: 15px;">
+                            <div style="flex: 1;">
+                                <label style="font-size: 13px; font-weight: bold; color: #437c43;">Rol en el Sistema *</label>
+                                <select id="edit-rol" class="swal2-select" style="width: 100%; margin: 5px 0 0 0; padding: 0 10px; height: 3.3rem;">
+                                    <option value="Administrador" ${user.rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
+                                    <option value="Empleado" ${user.rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
+                                </select>
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="font-size: 13px; font-weight: bold; color: #437c43;">Contraseña (Opcional)</label>
+                                <input id="edit-password" type="password" class="swal2-input" style="width: 100%; margin: 5px 0 0 0;" placeholder="Dejar vacío para mantener">
+                            </div>
+                        </div>
+                    </div>
+                `,
+                width: '600px',
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonColor: '#437c43',
+                cancelButtonColor: '#6d6d6d',
+                confirmButtonText: '<i data-lucide="save"></i> Guardar Cambios',
+                cancelButtonText: 'Cancelar',
+                didOpen: () => {
+                    lucide.createIcons();
+                },
+                preConfirm: () => {
+                    const nombre = document.getElementById('edit-nombre').value.trim();
+                    const correo = document.getElementById('edit-correo').value.trim();
+                    const telefono = document.getElementById('edit-telefono').value.trim();
+                    const rol = document.getElementById('edit-rol').value;
+                    const password = document.getElementById('edit-password').value.trim();
+
+                    if (!nombre || !correo || !rol) {
+                        Swal.showValidationMessage('Por favor completa todos los campos obligatorios (*).');
+                        return false;
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(correo)) {
+                        Swal.showValidationMessage('El formato del correo electrónico es inválido.');
+                        return false;
+                    }
+
+                    if (password && password.length < 6) {
+                        Swal.showValidationMessage('La contraseña debe tener un mínimo de 6 caracteres.');
+                        return false;
+                    }
+
+                    const updateData = { nombre, correo: correo.toLowerCase(), telefono: telefono || null, rol };
+                    if (password) updateData.password = password;
+
+                    return updateData;
+                }
+            });
+
+            if (formValues) {
+                Swal.fire({
+                    title: 'Actualizando usuario...',
+                    text: 'Por favor espera',
+                    allowOutsideClick: false,
+                    didOpen: () => { Swal.showLoading(); }
+                });
+
+                const { error } = await supabaseClient
+                    .from('usuarios')
+                    .update(formValues)
+                    .eq('id', userId);
+
+                if (error) {
+                    if (error.code === '23505') {
+                        Swal.fire('Atención', 'Ya existe un usuario registrado usando este correo electrónico.', 'warning');
+                    } else {
+                        Swal.fire('Error', `Ocurrió un error inesperado: ${error.message}`, 'error');
+                    }
+                } else {
+                    Swal.fire({
+                        title: '¡Actualizado!',
+                        text: 'Los datos del usuario han sido modificados correctamente.',
+                        icon: 'success',
+                        confirmButtonColor: '#437c43'
+                    });
+                    cargarUsuarios(); // Refrescar la tabla
+                }
+            }
+        } else if (e.target.classList.contains("btn-action")) {
             const userId = e.target.getAttribute("data-id");
             const estadoActual = e.target.getAttribute("data-estado") === 'true';
             const nuevoEstado = !estadoActual;

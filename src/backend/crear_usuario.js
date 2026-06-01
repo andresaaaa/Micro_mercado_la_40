@@ -15,15 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // 2. Capturar los valores de los inputs del formulario
         const nombre = document.getElementById("reg-nombre").value;
         const email = document.getElementById("reg-email").value;
-        const rol = document.getElementById("reg-rol").value;
         const password = document.getElementById("reg-password").value;
         const telefono = document.getElementById("reg-telefono").value;
 
         // Validación básica en el frontend
-        if (!rol) {
-            alert("Por favor, selecciona un rol (Administrador o Empleado).");
-            return;
-        }
 
         if (password.length < 8) {
             alert("La contraseña debe tener al menos 8 caracteres.");
@@ -37,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     {
                         nombre: nombre,
                         correo: email,
-                        rol: rol,
+                        rol: "Empleado",
                         password: password, // Validación por consulta directa
                         telefono: telefono,
                         estado: true           // Todo usuario nuevo inicia activo por defecto

@@ -37,6 +37,10 @@ import { supabaseClient } from './conexion.js';
            stroke="#9cbbad" stroke-width="1.8" fill="none"/>`;
   });
 
+  /* =========================================
+     2. RECORDARME – persistir usuario
+     ========================================= */
+  // Al cargar: recuperar usuario si fue guardado
 
   /* =========================================
      3. HELPERS DE FEEDBACK
@@ -105,6 +109,8 @@ import { supabaseClient } from './conexion.js';
     btnLogin.textContent = 'Verificando…';
     showFeedback('Iniciando sesión, por favor espera…', 'loading');
 
+
+
     try {
 
       const { data: usuario, error } = await supabaseClient
@@ -113,17 +119,22 @@ import { supabaseClient } from './conexion.js';
         .eq('correo', user)
         .eq('password', pass)
         .eq('estado', true)
-
+        
       if (error) throw error;
       if (usuario.length === 0) {
-        alert("Acceso denegado: Correo o contraseña incorrectos, o usuario inactivo.");
+        Swal.fire({
+          text: `Acceso denegado: Correo o contraseña incorrectos, o usuario inactivo.`,
+          icon: 'error',
+          confirmButtonColor: '#437c43',
+        });
+        
         return;
       }
       console.log(usuario);
       const usuarioLogueado = usuario[0];
+      localStorage.setItem("nombre", usuarioLogueado.nombre);
       localStorage.setItem("usuario", JSON.stringify(usuario[0]));
       console.log(usuario[0]);
-
       showFeedback('✓ Acceso concedido. Redirigiendo…', 'loading');
       Swal.fire({
         text: `¡Bienvenido, ${usuarioLogueado.nombre}!`,
@@ -132,7 +143,17 @@ import { supabaseClient } from './conexion.js';
       }).then((result) => {
         if (result.isConfirmed) {
           clearFeedback();
+          
+          switch (usuarioLogueado.rol) {
+        case "Administrador":
           window.location.href = "src/frontend/pages/dashboard.html";
+          break;
+        case "Empleado":
+          window.location.href = "src/frontend/pages/dashboard_emp.html";
+          break;
+        default:
+          break;
+      }
         }
       });
 

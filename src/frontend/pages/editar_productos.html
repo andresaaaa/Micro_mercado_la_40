@@ -22,7 +22,7 @@
                 <a href="productos.html" class="nav-item active"><i data-lucide="package"></i> Productos</a>
                 <a href="inventario.html" class="nav-item"><i data-lucide="archive"></i> Inventario</a>
                 <a href="nueva_entrada.html" class="nav-item"><i data-lucide="arrow-left-right"></i> Entradas</a>
-                <a href="nueva_salida.html"  class="nav-item"><i data-lucide="arrow-up-right"></i> Salidas</a>
+                <a href="nueva_salida.html" class="nav-item"><i data-lucide="arrow-up-right"></i> Salidas</a>
                 <a href="reportes.html" class="nav-item"><i data-lucide="bar-chart-3"></i> Reportes</a>
                 <a href="usuarios.html" class="nav-item"><i data-lucide="users"></i> Usuarios</a>
                 <a href="configuracion.html" class="nav-item"><i data-lucide="settings"></i> Configuración</a>
@@ -40,14 +40,9 @@
                     <p>Modifica la información del producto.</p>
                 </div>
                 <div class="user-profile">
-                    <div class="notification-icon">
-                        <i data-lucide="bell"></i>
-                        <span class="badge"></span>
-                    </div>
                     <div class="profile-info">
                         <div class="avatar"><i data-lucide="user"></i></div>
-                        <span>Administrador</span>
-                        <i data-lucide="chevron-down"></i>
+                        <span id="nombre-usuario">Usuario</span>
                     </div>
                 </div>
             </header>
@@ -55,7 +50,7 @@
             <section class="card form-card">
                 <form id="edit-product-form">
                     <div class="form-grid">
-                        
+
                         <div class="form-group">
                             <label for="codigo">Código</label>
                             <input type="text" id="codigo" readonly class="input-readonly">
@@ -143,7 +138,7 @@
             </section>
 
             <footer class="footer">
-                <p>&copy; 2025 Micromercado La 40. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Micromercado La 40. Todos los derechos reservados.</p>
             </footer>
         </main>
     </div>
@@ -151,4 +146,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="../../backend/editar_productos.js"></script>
 </body>
+
 </html>

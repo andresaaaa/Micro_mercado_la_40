@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../style/reportes.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
     <div class="container">
@@ -38,14 +40,9 @@
                     <p>Analiza el rendimiento, ventas y movimientos de tu negocio.</p>
                 </div>
                 <div class="user-profile">
-                    <div class="notification-icon">
-                        <i data-lucide="bell"></i>
-                        <span class="badge"></span>
-                    </div>
                     <div class="profile-info">
                         <div class="avatar"><i data-lucide="user"></i></div>
-                        <span>Administrador</span>
-                        <i data-lucide="chevron-down"></i>
+                        <span id="nombre-usuario">Usuario</span>
                     </div>
                 </div>
             </header>
@@ -126,16 +123,17 @@
             <footer class="footer">
                 <div class="footer-content">
                     <span class="leaf-left">🌿</span>
-                    <p>&copy; 2025 Micromercado La 40. Todos los derechos reservados.</p>
+                    <p>&copy; 2026 Micromercado La 40. Todos los derechos reservados.</p>
                     <span class="leaf-right">🌿</span>
                 </div>
             </footer>
         </main>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="../../backend/reportes.js"></script>
 </body>
+
 </html>

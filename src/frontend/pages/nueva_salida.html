@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../style/nueva_salida.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
     <div class="container">
@@ -39,20 +41,15 @@
                     <p>Registra productos que salen del inventario.</p>
                 </div>
                 <div class="user-profile">
-                    <div class="notification-icon">
-                        <i data-lucide="bell"></i>
-                        <span class="badge"></span>
-                    </div>
                     <div class="profile-info">
                         <div class="avatar"><i data-lucide="user"></i></div>
-                        <span>Administrador</span>
-                        <i data-lucide="chevron-down"></i>
+                        <span id="nombre-usuario">Usuario</span>
                     </div>
                 </div>
             </header>
 
             <form id="form-nueva-salida">
-                
+
                 <section class="card meta-card">
                     <div class="meta-grid">
                         <div class="form-group">
@@ -62,7 +59,7 @@
                         <div class="form-group">
                             <label for="fecha-salida">Fecha</label>
                             <div class="input-icon-wrapper">
-                                <input type="date" id="fecha-salida" value="2025-05-18">
+                                <input type="date" id="fecha-salida" value="2026-05-18">
                             </div>
                         </div>
                         <div class="form-group">
@@ -80,7 +77,7 @@
 
                 <section class="card products-card">
                     <h2 class="section-title">Productos</h2>
-                    
+
                     <div class="table-responsive">
                         <table class="transaction-table">
                             <thead>
@@ -153,7 +150,7 @@
                         <button type="button" class="btn btn-add-row" id="btn-add-item">
                             <i data-lucide="plus"></i> Agregar producto
                         </button>
-                        
+
                         <div class="grand-total-box">
                             <span class="total-label">Total de la salida:</span>
                             <span class="total-amount bold">$ <span id="grand-total">0</span></span>
@@ -172,7 +169,7 @@
             <footer class="footer">
                 <div class="footer-content">
                     <span class="leaf-left">🌿</span>
-                    <p>&copy; 2025 Micromercado La 40. Todos los derechos reservados.</p>
+                    <p>&copy; 2026 Micromercado La 40. Todos los derechos reservados.</p>
                     <span class="leaf-right">🌿</span>
                 </div>
             </footer>
@@ -181,4 +178,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="../../backend/nueva_salida.js"></script>
 </body>
+
 </html>
